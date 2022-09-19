@@ -6,11 +6,16 @@
 
     <body>
         <h2>
-            Hola {{mail}} desde un correo electrónico
+            Hola,
         </h2>
 
         <p>
-            Este mensaje se envía desde Django
+            El usuario {{data.name}} {{data.lastname}} te ha contactado a través del correo {{data.mail}}
+        </p>
+
+        <p>
+            El mensaje es el siguiente: <br/>
+            {{data.textarea}}
         </p>
     </body> 
 </html>

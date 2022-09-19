@@ -3,8 +3,8 @@ from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 
-def send_email(mail):
-    context = {'mail': mail}
+def send_email(data):
+    context = {'data': data}
     template = get_template('mail.html')
     content = template.render(context)
 
@@ -12,15 +12,17 @@ def send_email(mail):
         'Un correo de prueba',
         'CodigoFacilito',
         settings.EMAIL_HOST_USER,
-        [mail],  
+        [ element for element in data.values()],  
     )
 
     email.attach_alternative(content, 'text/html')
     email.send()
 
+
 def index(request):
     if request.method == 'POST':
-        mail = request.POST.get('mail')
-        send_email(mail)
+        #mail = request.POST.get('my-form')
+        data = request.POST.items() 
+        send_email(dict(data))
 
     return render(request, 'index.html', {})

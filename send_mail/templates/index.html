@@ -13,6 +13,9 @@
         <form action="#" method="POST">
             {% csrf_token %}
             <input type="text" name="mail" placeholder="ejemplo@ejemplo.com"/>
+            <input type="text" name="name" placeholder="Alejandro"/>
+            <input type="text" name="lastname" placeholder="Díaz Alvarado"/>
+            <textarea name="textarea" rows="10" cols="50">Escribe algo...</textarea>
 
             <input type="submit" value="Enviar"/>
         </form>
