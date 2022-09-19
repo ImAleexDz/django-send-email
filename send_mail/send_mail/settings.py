@@ -14,6 +14,7 @@ import os
 import django
 from pathlib import Path
 from decouple import config
+from django import conf
 from django.utils.encoding import smart_str
 django.utils.encoding.smart_text = smart_str
 
@@ -29,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -46,6 +47,8 @@ INSTALLED_APPS = [
     'mail',
     'django_inlinecss'
 ]
+
+INSTALLED_APPS += ('naomi',)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -139,3 +142,7 @@ EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+
+if DEBUG:
+    EMAIL_BACKEND = config('EMAIL_BACKEND')
+    EMAIL_FILE_PATH = config('EMAIL_FILE_PATH')
