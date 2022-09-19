@@ -10,9 +10,9 @@ def send_email(data):
 
     email = EmailMultiAlternatives(
         'Un correo de prueba',
-        'CodigoFacilito',
+        'testing',
         settings.EMAIL_HOST_USER,
-        [ element for element in data.values()],  
+        [ data['mail'] ],  
     )
 
     email.attach_alternative(content, 'text/html')
